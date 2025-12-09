@@ -300,3 +300,36 @@ fn construct_encoder_table(tree: &Tree) -> EncoderTable {
     traverse(tree, &mut code, &mut encoder);
     encoder
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_generic_compression() -> Result<(), String> {
+        let text = "Hello World! Hello Huffman!";
+        let bytes = text.as_bytes();
+
+        let message = Huffman::encode(bytes)?;
+        let decoded_bytes = Huffman::decode(&message)?;
+        let decoded = String::from_utf8(decoded_bytes).map_err(|e| e.to_string())?;
+
+        assert_eq!(text, decoded);
+
+        Ok(())
+    }
+
+    #[test]
+    fn test_empty_compression() -> Result<(), String> {
+        let text = "";
+        let bytes = text.as_bytes();
+
+        let message = Huffman::encode(bytes)?;
+        let decoded_bytes = Huffman::decode(&message)?;
+        let decoded = String::from_utf8(decoded_bytes).map_err(|e| e.to_string())?;
+
+        assert_eq!(text, decoded);
+
+        Ok(())
+    }
+}
