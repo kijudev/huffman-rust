@@ -1,16 +1,8 @@
 # Huffman coding implemented in Rust
 
-A small, self-contained implementation of Huffman coding in Rust for educational and utility purposes.
+A small, self-contained implementation of Huffman coding in Rust for educational purposes.
 
-This repository contains:
-
-- A library implementing Huffman encoding/decoding (`src/huffman.rs`).
-- A simple CLI front-end that compresses and decompresses files (`src/main.rs`) using `clap`.
-- Message serialization using MessagePack (`rmp-serde`) to store the Huffman tree + encoded bit stream.
-
-The encoder uses a canonical in-memory tree representation and a `bitvec::BitVec` to store encoded bits. The CLI exposes easy-to-use `compress` and `decompress` subcommands.
-
-## Quick build
+## Build
 
 From the crate root (`huffman-rust`), build with Cargo:
 
@@ -38,26 +30,26 @@ The CLI supports two subcommands: `compress` and `decompress`.
 
 Compress a file and write to an explicit output:
 
-```huffman-rust/README.md#L1-20
+```sh
 cargo run -- compress path/to/input.txt path/to/output.huf
 ```
 
 Compress a file and let the CLI choose the output path:
 
-```huffman-rust/README.md#L1-20
+```sh
 cargo run -- compress path/to/input.txt
 # -> writes to path/to/input.txt.huf (default behavior)
 ```
 
 Decompress a file to a specified output file:
 
-```huffman-rust/README.md#L1-20
+```sh
 cargo run -- decompress path/to/input.huf path/to/output.bin
 ```
 
 Decompress and let the CLI choose the output path:
 
-```huffman-rust/README.md#L1-20
+```sh
 cargo run -- decompress path/to/input.huf
 # -> writes to path/to/input.huf.orig (default behavior)
 ```
