@@ -1,5 +1,5 @@
 mod huffman;
 
 fn main() {
-    println!("Hello, world!");
+    let text = String::from("Hello, world!");
 }
